@@ -1,6 +1,7 @@
 import json
 import os
 from logging import DEBUG, StreamHandler, getLogger
+from functools import reduce
 
 import requests
 
