@@ -62,6 +62,7 @@ class CallbackResource(object):
             logger.debug('docomo_res: {}'.format(docomo_res))
 
             res_utt = docomo_res['utt']
+            converted_utt = reduce(lambda x, y: x.replace(y, dict[y]), dict, res_utt)
 
             send_content = {
                 'to': [msg['content']['from']],
@@ -71,7 +72,7 @@ class CallbackResource(object):
                     'contentType': 1,
                     'toType': 1,
                     #'text': docomo_res['utt'],
-                    'text': res_utt,
+                    'text': converted_utt,
                 },
             }
             send_content = json.dumps(send_content)
@@ -86,3 +87,17 @@ class CallbackResource(object):
 
 api = falcon.API()
 api.add_route('/callback', CallbackResource())
+
+dict = {
+'男': 'ちゃんにー',
+'男性': 'ちゃんにー',
+'女': 'ちゃんねー',
+'女性': 'ちゃんねー',
+'予約する':'バミる',
+'寿司':'シースー',
+'お寿司':'シースー',
+'一緒に':'バーターで',
+'一緒':'バーター',
+'ダメ':'NG',
+'ハワイ':'ワイハ',
+}
