@@ -61,6 +61,8 @@ class CallbackResource(object):
 
             logger.debug('docomo_res: {}'.format(docomo_res))
 
+            res_utt = docomo_res['utt']
+
             send_content = {
                 'to': [msg['content']['from']],
                 'toChannel': 1383378250,  # Fixed value
@@ -68,7 +70,8 @@ class CallbackResource(object):
                 'content': {
                     'contentType': 1,
                     'toType': 1,
-                    'text': docomo_res['utt'],
+                    #'text': docomo_res['utt'],
+                    'text': res_utt,
                 },
             }
             send_content = json.dumps(send_content)
