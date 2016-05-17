@@ -1,5 +1,6 @@
 linnabot
 ====
+Updated
 
 JK linebot using docomo dialog api
 
