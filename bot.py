@@ -51,10 +51,13 @@ class CallbackResource(object):
         for msg in receive_params['result']:
 
             logger.debug('msg: {}'.format(msg))
+            converted_msg = reduce(lambda x, y: x.replace(y, dict[y]), reversed_dict, msg['content']['text'])
+            logger.debug('converted_msg: {}'.format(converted_msg))
 
             try:
                 docomo_res = self.docomo_client.send(
-                    utt=msg['content']['text'], apiname='Dialogue')
+                    #utt=msg['content']['text'], apiname='Dialogue')
+                    utt=converted_msg, apiname='Dialogue')
 
             except Exception:
                 raise falcon.HTTPError(falcon.HTTP_503,
@@ -92,10 +95,12 @@ api.add_route('/callback', CallbackResource())
 
 # Load gyokai dictionary
 dict={}
+reverse_dict={}
 with open('gyokai.csv') as fin:
     reader=csv.reader(fin, skipinitialspace=True, quotechar="'")
     for row in reader:
         dict[row[0]]=row[1]
+        reverse_dict[row[1]]=row[0]
 
 '''
 dict = {
