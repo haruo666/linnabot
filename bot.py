@@ -95,7 +95,7 @@ api.add_route('/callback', CallbackResource())
 
 # Load gyokai dictionary
 dict={}
-reverse_dict={}
+reversed_dict={}
 with open('gyokai.csv') as fin:
     reader=csv.reader(fin, skipinitialspace=True, quotechar="'")
     for row in reader:
