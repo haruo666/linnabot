@@ -51,7 +51,7 @@ class CallbackResource(object):
         for msg in receive_params['result']:
 
             logger.debug('msg: {}'.format(msg))
-            converted_msg = reduce(lambda x, y: x.replace(y, dict[y]), reversed_dict, msg['content']['text'])
+            converted_msg = reduce(lambda x, y: x.replace(y, reversed_dict[y]), reversed_dict, msg['content']['text'])
             logger.debug('converted_msg: {}'.format(converted_msg))
 
             try:
