@@ -100,7 +100,7 @@ with open('gyokai.csv') as fin:
     reader=csv.reader(fin, skipinitialspace=True, quotechar="'")
     for row in reader:
         dict[row[0]]=row[1]
-        reverse_dict[row[1]]=row[0]
+        reversed_dict[row[1]]=row[0]
 
 '''
 dict = {
