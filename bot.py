@@ -7,6 +7,7 @@ import requests
 
 import doco.client
 import falcon
+import csv
 
 # logger
 logger = getLogger(__name__)
@@ -89,6 +90,14 @@ class CallbackResource(object):
 api = falcon.API()
 api.add_route('/callback', CallbackResource())
 
+# Load gyokai dictionary
+dict={}
+with open('gyokai.csv') as fin:
+    reader=csv.reader(fin, skipinitialspace=True, quotechar="'")
+    for row in reader:
+        dict[row[0]]=row[1]
+
+'''
 dict = {
 '男': 'ちゃんにー',
 '男性': 'ちゃんにー',
@@ -114,3 +123,4 @@ dict = {
 'ちょっと':'ちょいもう',
 '大きい':'かいでー',
 }
+'''
